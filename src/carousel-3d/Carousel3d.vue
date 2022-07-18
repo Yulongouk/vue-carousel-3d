@@ -1,5 +1,5 @@
 <template>
-  <div class="carousel-3d-container" :style="{height: this.slideHeight + 'px'}">
+  <div class="carousel-3d-container" :style="{height: 500 + 'px'}">
     <div class="carousel-3d-slider" :style="{width: this.slideWidth + 'px', height: this.slideHeight + 'px'}">
       <slot></slot>
     </div>
@@ -27,7 +27,7 @@ export default {
     },
     perspective: {
       type: [Number, String],
-      default: 35
+      default: 0
     },
     display: {
       type: [Number, String],
@@ -47,11 +47,11 @@ export default {
     },
     width: {
       type: [Number, String],
-      default: 360
+      default: 350
     },
     height: {
       type: [Number, String],
-      default: 270
+      default: 200
     },
     border: {
       type: [Number, String],
@@ -75,11 +75,11 @@ export default {
     },
     minSwipeDistance: {
       type: Number,
-      default: 10
+      default: 5
     },
     inverseScaling: {
       type: [Number, String],
-      default: 300
+      default: 0
     },
     controlsVisible: {
       type: Boolean,
@@ -341,8 +341,8 @@ export default {
       const deltaX = (this.dragStartX - eventPosX)
       const deltaY = (this.dragStartY - eventPosY)
 
-      this.dragOffsetX = deltaX
-      this.dragOffsetY = deltaY
+      this.dragOffsetX = deltaY
+      this.dragOffsetY = deltaX
 
       // If the swipe is more significant on the Y axis, do not move the slides because this is a scroll gesture
       if (Math.abs(this.dragOffsetY) > Math.abs(this.dragOffsetX)) {
@@ -475,6 +475,7 @@ export default {
 .carousel-3d-slider {
   position: relative;
   margin: 0 auto;
+  top:30%;
   transform-style: preserve-3d;
   -webkit-perspective: 1000px;
   -moz-perspective: 1000px;

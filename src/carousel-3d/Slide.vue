@@ -88,20 +88,21 @@
             },
             calculatePosition (i, positive, zIndex) {
                 const z = !this.parent.disable3d ? parseInt(this.parent.inverseScaling) + ((i + 1) * 100) : 0
-                const y = !this.parent.disable3d ? parseInt(this.parent.perspective) : 0
+                const x = !this.parent.disable3d ? parseInt(this.parent.perspective) : 0
                 const leftRemain = (this.parent.space === 'auto')
-                    ? parseInt((i + 1) * (this.parent.width / 1.5), 10)
+                    ? parseInt((i + 1) * (this.parent.height / 1.5), 10)
                     : parseInt((i + 1) * (this.parent.space), 10)
                 const transform = (positive)
-                    ? 'translateX(' + (leftRemain) + 'px) translateZ(-' + z + 'px) ' +
-                    'rotateY(-' + y + 'deg)'
-                    : 'translateX(-' + (leftRemain) + 'px) translateZ(-' + z + 'px) ' +
-                    'rotateY(' + y + 'deg)'
-                const top = this.parent.space === 'auto' ? 0 : parseInt((i + 1) * (this.parent.space))
+                    ? 'translateY(' + (leftRemain) + 'px) translateZ(-' + z + 'px) ' +
+                    'rotateX(-' + x + 'deg)'
+                    : 'translateY(-' + (leftRemain) + 'px) translateZ(-' + z + 'px) ' +
+                    'rotateX(' + x + 'deg)'
+                const top = this.parent.space === 'auto' ? 0 : parseInt((i+0) * (this.parent.space))
 
                 return {
                     transform: transform,
                     top: top,
+
                     zIndex: zIndex - (Math.abs(i) + 1)
                 }
             },
@@ -125,10 +126,9 @@
 		opacity: 0;
 		visibility: hidden;
 		overflow: hidden;
-		top: 0;
 		border-radius: 1px;
 		border-color: #000;
-		border-color: rgba(0, 0, 0, 0.4);
+		border-color: rgba(1, 1, 1, 0.4);
 		border-style: solid;
 		background-size: cover;
 		background-color: #ccc;
@@ -138,7 +138,7 @@
 	}
 
 	.carousel-3d-slide {
-		text-align: left;
+		text-align: center;
 	}
 
 	.carousel-3d-slide img {
